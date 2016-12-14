@@ -99,7 +99,7 @@ $(function() {
         });
 
          it('At least a single entry after the load entries is done', function(){
-            expect($('.feed').children().length).toBeGreaterThan(0);
+            expect($('.feed .entry').length).not.toBe(0);
          });
      });
 
