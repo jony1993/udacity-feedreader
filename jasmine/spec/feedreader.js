@@ -3,16 +3,15 @@
  * This is the spec file that Jasmine will read and contains
  * all of the tests that will be run against your application.
  */
-
 /* We're placing all of our tests within the $() function,
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
     /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
+     * a related set of tests. This suite is all about the RSS
+     * feeds definitions, the allFeeds variable in our application.
+     */
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
@@ -33,7 +32,7 @@ $(function() {
          */
 
         it('Feed url is defined and not empty', function() {
-            for (var i = 0; i < allFeeds.length; i++){
+            for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
             }
@@ -46,7 +45,7 @@ $(function() {
          */
 
         it('Feed name is defined and not empty', function() {
-            for (var i = 0; i < allFeeds.length; i++){
+            for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toBe(0);
             }
@@ -63,27 +62,27 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-         it('Menu Element is hidden by default', function(){
+        it('Menu Element is hidden by default', function() {
             expect($('body').attr('class')).toContain('menu-hidden');
-         });
+        });
 
-         /* Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
-          it('Menu changes visibility when the menu icon is clicked', function(){
+        /* Write a test that ensures the menu changes
+         * visibility when the menu icon is clicked. This test
+         * should have two expectations: does the menu display when
+         * clicked and does it hide when clicked again.
+         */
+        it('Menu changes visibility when the menu icon is clicked', function() {
 
             //Click the menu icon to show the menu
             $('.menu-icon-link').click();
-                expect($('body').attr('class')).not.toContain('menu-hidden');
+            expect($('body').attr('class')).not.toContain('menu-hidden');
 
 
             //Click the menu icon to hide the menu
             $('.menu-icon-link').click();
-                expect($('body').attr('class')).toContain('menu-hidden');
+            expect($('body').attr('class')).toContain('menu-hidden');
         });
-    });      
+    });
 
     /* Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
@@ -94,14 +93,14 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        beforeEach(function(done){
+        beforeEach(function(done) {
             loadFeed(0, done);
         });
 
-         it('At least a single entry after the load entries is done', function(){
+        it('At least a single entry after the load entries is done', function() {
             expect($('.feed .entry').length).not.toBe(0);
-         });
-     });
+        });
+    });
 
     /* Write a new test suite named "New Feed Selection"*/
     describe('New Feed Selection', function() {
@@ -111,9 +110,9 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-         var firstFeed;
+        var firstFeed;
 
-         beforeEach(function(done) {
+        beforeEach(function(done) {
             loadFeed(0, function() {
                 firstFeed = $('.feed').html();
                 done();
@@ -128,11 +127,5 @@ $(function() {
             });
         });
 
-        //Revert feed back to orginal feed
-        afterEach(function(done) {
-            loadFeed(0, done);
-        });
-         
-
-    });     
+    });
 }());
